@@ -18,14 +18,14 @@
     </div>
 
     <!-- Formulaire de connexion -->
-    <form th:action="@{/users/login}" method="post">
+    <form th:action="@{/users/loginuser}" method="post">
         <div class="mb-3 w-50">
             <label for="login" class="form-label">Nom d'utilisateur</label>
             <input type="text" id="login" name="login" class="form-control" placeholder="Entrez votre nom d'utilisateur" required />
         </div>
         <div class="mb-3 w-50">
-            <label for="password" class="form-label">Mot de Passe</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Entrez votre mot de passe" required />
+            <label for="mot_de_passe" class="form-label">Mot de Passe</label>
+            <input type="password" id="mot_de_passe" name="mot_de_passe" class="form-control" placeholder="Entrez votre mot de passe" required />
         </div>
         <button type="submit" class="btn btn-primary">Se connecter</button>
     </form>

@@ -9,7 +9,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idU")
-    private int idu;
+    private int id;
 
     @Column(name="first_name")
     private String prenom;
@@ -21,7 +21,7 @@ public class User {
     private String login;
 
     @Column(name="password")
-    private String mot_de_passe;
+    private String motdepasse;
 
     @Column(name="role")
     private String roleU;
@@ -31,31 +31,31 @@ public class User {
 
     }
 
-    public User(String nom, String prenom, String login, String mot_de_passe, String roleU) {
+    public User(String nom, String prenom, String login, String motdepasse, String roleU) {
         this.nom = nom;
         this.prenom = prenom;
         this.login = login;
-        this.mot_de_passe = mot_de_passe;
+        this.motdepasse = motdepasse;
         this.roleU = roleU;
     }
 
-    public User(int idu,String nom, String prenom, String login, String mot_de_passe, String roleU) {
-        this.idu = idu;
+    public User(int id,String nom, String prenom, String login, String motdepasse, String roleU) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.login = login;
-        this.mot_de_passe = mot_de_passe;
+        this.motdepasse = motdepasse;
         this.roleU = roleU;
     }
 
     // define getter/setter
 
-    public int getIdu() {
-        return idu;
+    public int getId() {
+        return id;
     }
 
-    public void setIdu(int idu) {
-        this.idu = idu;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -82,12 +82,12 @@ public class User {
         this.login = login;
     }
 
-    public String getMot_de_passe() {
-        return mot_de_passe;
+    public String getMotdepasse() {
+        return motdepasse;
     }
 
-    public void setMot_de_passe(String mot_de_passe) {
-        this.mot_de_passe = mot_de_passe;
+    public void setMotdepasse(String motdepasse) {
+        this.motdepasse = motdepasse;
     }
 
     public String getRoleU() {
@@ -101,11 +101,11 @@ public class User {
 
     public String toString() {
         return "Employee{" +
-                "id=" + idu +
+                "id=" + id +
                 ", firstName='" + prenom + '\'' +
                 ", lastName='" + nom + '\'' +
                 ", login='" + login + '\'' +
-                ", mot de passe='" + mot_de_passe + '\'' +
+                ", mot de passe='" + motdepasse + '\'' +
                 ", role='" + roleU + '\'' +
                 '}';
     }
