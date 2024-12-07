@@ -1,6 +1,7 @@
 package ma.ac.uir.projet_web_dev.controller;
 
 
+import jakarta.servlet.http.HttpSession;
 import ma.ac.uir.projet_web_dev.dao.UserRepository;
 import ma.ac.uir.projet_web_dev.entity.User;
 import ma.ac.uir.projet_web_dev.service.UserService;
@@ -51,6 +52,11 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/users/login";
+    }
 
     @PostMapping("/save")
     public String saveUser(@ModelAttribute("user") User theUser){
@@ -58,10 +64,38 @@ public class UserController {
         return "redirect:/users/login";
     }
 
-    @GetMapping ("/dashboard/chef-projet")
-    public String DashboardChefProjet(@ModelAttribute User user) {
-        return "chef-projet-dashboard";
+    @GetMapping("/account")
+    public String showAccountDetails(@RequestParam("userId") int id, Model leModel) {
+        try {
+            // Fetch the user by ID
+            User theUser = usServ.findById(id);
+            if (theUser != null) {
+                leModel.addAttribute("user", theUser);
+                return "account-form";
+            } else {
+                leModel.addAttribute("error", "Utilisateur introuvable.");
+                return "error-page"; // Replace with your error template
+            }
+        } catch (Exception e) {
+            leModel.addAttribute("error", "Une erreur est survenue !");
+            return "error-page"; // Replace with your error template
+        }
     }
+
+    @PostMapping("/update")
+    public String updateAccount(@ModelAttribute("user") User user, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (userId != null && userId.equals(user.getId())) {
+            usServ.save(user); // Save the updated user details
+            return "redirect:/users/account?success"; // Redirect with success message
+        } else {
+            return "redirect:/users/login";
+        }
+    }
+
+
+
+
 
 
 

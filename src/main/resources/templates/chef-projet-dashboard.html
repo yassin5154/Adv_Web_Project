@@ -14,8 +14,11 @@
     <div class="d-flex justify-content-between mb-4">
         <h1>Gestion des Projets</h1>
         <div>
-            <a th:href="@{/account}" class="btn btn-outline-primary me-2">Mon Compte</a>
+            <a th:href="@{/users/account}" class="btn btn-outline-primary me-2">Mon Compte</a>
             <a th:href="@{/developers}" class="btn btn-outline-primary">Développeurs</a>
+            <form th:action="@{/users/logout}" method="get" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Déconnexion</button>
+            </form>
         </div>
     </div>
 
