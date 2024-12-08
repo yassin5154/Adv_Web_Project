@@ -35,16 +35,16 @@ public class UserController {
     }
 
     @PostMapping("/loginuser")
-    public String loginUser(@RequestParam String login, @RequestParam String mot_de_passe, Model model) {
+    public String loginUser(@RequestParam String login, @RequestParam String motdepasse, Model model) {
         // Vérification des informations d'identification
-        User user = userRepository.findByLoginAndMotdepasse(login, mot_de_passe);
-
+        User user = userRepository.findByLoginAndMotdepasse(login, motdepasse);
+        model.addAttribute("userId", user.getId());
         if (user != null) {
             // Redirection en fonction du rôle
             if ("Chef de Projet".equalsIgnoreCase(user.getRoleU())) {
                 return "chef-projet-dashboard";
             } else if ("Développeur".equalsIgnoreCase(user.getRoleU())) {
-                return "redirect:/developpeur-dashboard";
+                return "developer-dashboard";
             }
         }
         // Ajout d'un message d'erreur en cas d'échec
