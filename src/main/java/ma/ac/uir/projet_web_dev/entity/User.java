@@ -100,7 +100,7 @@ public class User {
 
 
     public String toString() {
-        return "Employee{" +
+        return "User{" +
                 "id=" + id +
                 ", firstName='" + prenom + '\'' +
                 ", lastName='" + nom + '\'' +
