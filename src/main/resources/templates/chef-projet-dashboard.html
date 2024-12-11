@@ -24,7 +24,7 @@
 
     <!-- Bouton pour créer un projet -->
     <div class="mb-3 text-end">
-        <a th:href="@{/projects/new}" class="btn btn-success">Créer un nouveau projet</a>
+        <a th:href="@{/projects/new(userId=${userId})}" class="btn btn-success">Créer un nouveau projet</a>
     </div>
 
     <!-- Tableau des projets -->

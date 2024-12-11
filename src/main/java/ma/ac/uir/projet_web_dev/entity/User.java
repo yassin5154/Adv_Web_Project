@@ -3,6 +3,8 @@ package ma.ac.uir.projet_web_dev.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // Stratégie : une seule table
+@DiscriminatorColumn(name = "DTYPE") // Colonne discriminante pour identifier la sous-classe
 @Table(name="user")
 public class User {
 

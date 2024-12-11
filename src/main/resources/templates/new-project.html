@@ -11,8 +11,9 @@
 <body>
 <div class="container mt-5">
     <h1>Créer un Nouveau Projet</h1>
-    <form th:action="@{/projects/save}" method="post">
+    <form th:action="@{/projects/save(userId=${user.id})}" method="post">
         <div class="mb-3">
+            <input type="hidden" id="userId" name="userId" th:value="${user.id}">
             <label for="titre" class="form-label">Titre du Projet</label>
             <input type="text" id="titre" name="titre" class="form-control" required>
         </div>
@@ -22,7 +23,7 @@
         </div>
         <div class="mb-3">
             <label for="duree" class="form-label">Durée Estimée</label>
-            <input type="text" id="duree" name="dureeEstimee" class="form-control" required>
+            <input type="text" id="duree" name="dureeestime" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="etat" class="form-label">État</label>
@@ -34,13 +35,17 @@
         </div>
         <div class="mb-3">
             <label for="developers" class="form-label">Affecter des Développeurs Disponibles</label>
-            <select id="developers" name="developerIds" class="form-select" multiple>
+            <div id="developers">
                 <!-- Liste des développeurs disponibles -->
-                <option th:each="developer : ${developers}"
-                        th:value="${developer.id}"
-                        th:text="${developer.nom + ' ' + developer.prenom}">
-                </option>
-            </select>
+                <div th:each="developer : ${developers}" class="form-check">
+                    <input type="checkbox"
+                           th:id="'developer-' + ${developer.id}"
+                           th:name="developerIds"
+                           th:value="${developer.id}"
+                           class="form-check-input">
+                    <label th:for="'developer-' + ${developer.id}" th:text="${developer.nom + ' ' + developer.prenom}" class="form-check-label"></label>
+                </div>
+            </div>
         </div>
         <button type="submit" class="btn btn-success">Créer le Projet</button>
     </form>
